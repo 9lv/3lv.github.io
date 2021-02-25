@@ -28,8 +28,8 @@ param(
     $ZipFile = \"$location\$Name.zip\"
     New-Item $ZipFile -ItemType File -Force | Out-Null
  
-    #$RepositoryZipUrl = \"https://github.com/lv3/a/archive/a.zip\"
-    $RepositoryZipUrl = \"https://github.com//$Author/$Name/archive/$Name.zip\" 
+    #$RepositoryZipUrl = \"https://github.com/lv3/a/archive/main.zip\"
+    $RepositoryZipUrl = \"https://github.com//$Author/$Name/archive/$Branch.zip\" 
     # download the zip 
     Invoke-RestMethod -Uri $RepositoryZipUrl -OutFile $ZipFile
  
@@ -37,7 +37,7 @@ param(
     Expand-Archive -Path $ZipFile -DestinationPath \"$location\" -Force
     #remove the zip file
     Remove-Item -Path $ZipFile -Force
-    $Folder = Join-Path -Path \"$location\" -ChildPath \"$Name-$Name\"
+    $Folder = Join-Path -Path \"$location\" -ChildPath \"$Name-$Branch\"
     $InstallerPath =  Join-Path -Path \"$Folder\" -ChildPath \"$Installer.bat\"   
 
     if( $Run )
