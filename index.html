@@ -37,7 +37,7 @@ param(
     Expand-Archive -Path $ZipFile -DestinationPath \"$location\" -Force
     #remove the zip file
     Remove-Item -Path $ZipFile -Force
-    $Folder = Join-Path -Path "$location" -ChildPath \"$Name-$Name\"
+    $Folder = Join-Path -Path \"$location\" -ChildPath \"$Name-$Name\"
     $InstallerPath =  Join-Path -Path \"$Folder\" -ChildPath \"$Installer.bat\"   
 
     if( $Run )
